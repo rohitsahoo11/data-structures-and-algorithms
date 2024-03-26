@@ -1,0 +1,48 @@
+// Array Question - longest Consecutive Sequence
+
+// Brut Force
+// function longestConsecutiveSequence(arr){
+//     let longest = 1
+
+//     for (let i = 0; i<arr.length; i++){
+//         let x = arr[i]
+//         let count = 1
+
+//         while (arr.includes(x+1)){
+//             count ++
+//             x++
+//         }
+
+//         longest = Math.max(longest,count)
+//     }
+//     return longest
+// }
+// const nums = [102,4,100,1,101,3,2,1,1];
+// console.log(longestConsecutiveSequence(nums))
+
+
+// Better solution
+
+function lcs(arr){
+    arr.sort((a,b)=> a-b)
+
+    let longest = 1
+    let count = 0
+    let lastSmall = Infinity
+
+    for(let i = 0; i<arr.length;i++){
+        if(arr[i]-1 === lastSmall){
+            count += 1
+            lastSmall = arr[i]
+        }
+        else if(lastSmall !== arr[i]){
+            count = 1
+            lastSmall = arr[i]
+        }
+        longest = Math.max(longest, count)
+    }
+    return longest
+}
+
+let arr = [102,4,100,1,101,3,2,1,1]
+console.log(lcs(arr))
