@@ -1,0 +1,18 @@
+# Print the char that appeared first which count is greater than equal to P
+S = input("")
+P = int(input("second value: "))
+
+mp = {}
+for i in S:
+    if i in mp:
+        mp[i] += 1
+    else:
+        mp[i] = 1
+
+temp = ''
+for key, value in mp.items():
+    if value >= P:
+        temp += key
+char_list = list(temp)
+char_list.sort()
+print(char_list[0])
